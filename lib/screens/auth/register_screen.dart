@@ -66,6 +66,7 @@ class _ModernRegisterScreenState extends State<ModernRegisterScreen> {
       setState(() => _isLoading = false);
 
       if (error != null) {
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Row(
@@ -82,6 +83,7 @@ class _ModernRegisterScreenState extends State<ModernRegisterScreen> {
           ),
         );
       } else {
+        // ignore: use_build_context_synchronously
         Navigator.pop(context);
       }
     }
@@ -228,8 +230,9 @@ class _ModernRegisterScreenState extends State<ModernRegisterScreen> {
                                 keyboardType: TextInputType.emailAddress,
                                 validator: (value) {
                                   if (value?.isEmpty ?? true) return 'Requis';
-                                  if (!value!.contains('@'))
+                                  if (!value!.contains('@')) {
                                     return 'Email invalide';
+                                  }
                                   return null;
                                 },
                               ),
@@ -281,8 +284,9 @@ class _ModernRegisterScreenState extends State<ModernRegisterScreen> {
                                 obscureText: _obscurePassword,
                                 validator: (value) {
                                   if (value?.isEmpty ?? true) return 'Requis';
-                                  if (value!.length < 6)
+                                  if (value!.length < 6) {
                                     return 'Minimum 6 caractères';
+                                  }
                                   return null;
                                 },
                               ),
